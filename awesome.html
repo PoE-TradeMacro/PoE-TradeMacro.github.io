@@ -1,36 +1,23 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>PoE-TradeMacro</title>
-  <meta name="description" content="Automatic Price checking script for Path of Exile">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-</head>
-
-<body 
-      style="color:white;background-repeat:no-repeat;overflow: hidden;"
-      background="https://raw.githubusercontent.com/PoE-TradeMacro/ahk-in-java/master/src/main/resources/bg1.png">
-
-  <div class="wrapper">
-    
-  </div>
-  <pre id="rawclipboard">
-    DEFAULT, should be replaced by rawclipboard data after page has fully loaded
-  </pre>
-
-  
-
-
-  <script type="text/javascript">
-    function onJavaLoadSucceed(bridge) {
-        bridge.setSize(448, 246);
-    }
-    function onPoEItemCopy(rawClipboardStr) {
-        document.getElementById("rawclipboard").innerHTML = rawClipboardStr;
-    }
-  </script>
-</body>
-
-
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+  </head>
+  <body 
+        style="color:white;background-repeat:no-repeat;overflow: hidden;"
+        background="https://raw.githubusercontent.com/PoE-TradeMacro/ahk-in-java/master/src/main/resources/bg1.png">
+    <pre id="rawclipboard">
+      DEFAULT, should be replaced by rawclipboard data after page has fully loaded
+    </pre>
+    <script type="text/javascript">
+      function onJavaLoadSucceed(bridge) {
+          bridge.setSize(448, 246);
+      }
+      function onPoEItemCopy(rawClipboardStr) {
+          document.getElementById("rawclipboard").innerHTML = rawClipboardStr;
+      }
+    </script>
+  </body>
 </html>
