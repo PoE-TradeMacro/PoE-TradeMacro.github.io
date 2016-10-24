@@ -23,8 +23,8 @@
 
 
   <script type="text/javascript">
-    function abcd() {
-        document.getElementById("rawclipboard").innerHTML = "abcd";
+    function onJavaLoadSucceed(bridge) {
+        bridge.setSize(448, 246);
     }
     function onPoEItemCopy(rawClipboardStr) {
         document.getElementById("rawclipboard").innerHTML = rawClipboardStr;
