@@ -14,7 +14,7 @@
     
   </div>
   <div id="rawclipboard">
-    abcdDEFAULT, should be replaced by rawclipboard data after page has fully loaded
+    DEFAULT, should be replaced by rawclipboard data after page has fully loaded
   </div>
 
   
@@ -25,7 +25,7 @@
         document.getElementById("rawclipboard").innerHTML = "abcd";
     }
     function onPoEItemCopy(rawClipboardStr) {
-        document.getElementById("rawclipboard").innerHTML = "abc";
+        document.getElementById("rawclipboard").innerHTML = rawClipboardStr;
     }
   </script>
 </body>
