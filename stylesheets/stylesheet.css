@@ -126,6 +126,10 @@ footer a {
   text-decoration: underline;
 }
 
+a[href^="http://gitter"] {
+  display: block;
+}
+
 em {
   font-style: italic;
 }
