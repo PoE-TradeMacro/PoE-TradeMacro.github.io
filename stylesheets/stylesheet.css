@@ -126,7 +126,7 @@ footer a {
   text-decoration: underline;
 }
 
-a[href^="http://gitter"] {
+a[href^="https://gitter"] {
   display: block;
 }
 
