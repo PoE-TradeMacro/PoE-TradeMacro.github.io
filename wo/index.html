@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+  ~     This file is part of wraelclast-online.
+  ~
+  ~     wraelclast-online is free software: you can redistribute it and/or modify
+  ~     it under the terms of the GNU General Public License as published by
+  ~     the Free Software Foundation, either version 3 of the License, or
+  ~     (at your option) any later version.
+  ~
+  ~     wraelclast-online is distributed in the hope that it will be useful,
+  ~     but WITHOUT ANY WARRANTY; without even the implied warranty of
+  ~     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  ~     GNU General Public License for more details.
+  ~
+  ~     You should have received a copy of the GNU General Public License
+  ~     along with wraelclast-online.  If not, see <http://www.gnu.org/licenses/>.
+  -->
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Akara's Gem Store</title>
+    <style>
+        #wrapper {
+          margin-left: 200px;
+        }
+        #content {
+          float: right;
+          width: 100%;
+          background-color: #CCF;
+        }
+        #sidebar {
+          float: left;
+          width: 200px;
+          margin-left: -200px;
+          background-color: #FFA;
+        }
+        #cleared {
+          clear: both;
+        }
+
+        #myInput {
+          background-image: url('searchicon.png');
+          background-position: 10px 12px;
+          background-repeat: no-repeat;
+          width: 100%;
+          font-size: 12px;
+          padding: 12px 20px 12px 40px;
+          border: 1px solid #ddd;
+          margin-bottom: 12px;
+        }
+
+        #myUL {
+          list-style-type: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        #myUL li a {
+          border: 1px solid #ddd;
+          margin-top: -1px; /* Prevent double borders */
+          background-color: #f6f6f6;
+          padding: 4px;
+          text-decoration: none;
+          font-size: 10px;
+          color: black;
+          display: block
+        }
+
+        #myUL li a.header {
+          background-color: #e2e2e2;
+          cursor: default;
+        }
+
+        #myUL li a:hover:not(.header) {
+          background-color: #eee;
+        }
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            font-size: 10px;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 2px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+            integrity="sha256-/SIrNqv8h6QGKDuNoLGA4iret+kyesCkHGzVUUV0shc="
+            crossorigin="anonymous"></script>
+    <script
+            src="skills.js"></script>
+    <script>
+        function myFunction() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+
+                }
+            }
+        }
+        var bridge;
+        function onJavaLoadSucceed(myBridge) {
+          if (myBridge) {
+            bridge = myBridge;
+            myBridge.setSize(950, 546);
+          }
+        }
+        function doSearch() {
+           if (bridge) {
+              var gemName = $(this).text();
+              var params = bridge.newTradeParams();
+              params.setName(gemName);
+              params.setType("Gem");
+              params.setOnline("x");
+              var json = bridge.searchTradeItems(params);
+              //$("#resultJson").text(json);
+              JSON.parse(json).tradeItems.forEach(function(item) {
+                var tr = $("<tr></tr>");
+                tr.append("<td>" + item.seller + "</td>");
+                tr.append("<td>" + item.ign + "</td>");
+                tr.append("<td>" + item.quality + "</td>");
+                tr.append("<td>" + item.level + "</td>");
+                tr.append("<td>" + item.buyout + "</td>");
+                tr.attr("wtbmsg", itemToWtb(item));
+                tr.click(wtbClicked);
+                $("#resultTable").append(tr);
+              });
+           } else {
+              // page was run outside outside of WO
+              $("#resultTable").append("<tr><td>" + $(this).text() + "</td></tr>");
+           }
+        }
+        function itemToWtb(item) {
+            return "@" + item.ign + " Hi, I would like to buy your level " + item.level +
+                " " + item.quality + "% " + item.name + " listed for " + item.buyout + " in " + item.league;
+        }
+        function wtbClicked() {
+            var msg = $(this).attr("wtbmsg");
+            bridge.copyToClipboard(msg);
+        }
+        $(document).ready(function() {
+          skills.forEach(function(e) {
+                var li = $("<li><a href='#'>" + e + "</a></li>");
+                li.click(doSearch);
+                $("#myUL").append( li );
+          });
+        });
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="sidebar">
+            <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name">
+
+            <ul id="myUL">
+                <!--<li><a href="#" class="header">A</a></li>-->
+            </ul>
+            <!--http://pathofexile.gamepedia.com/Gem_tag-->
+            <!--<ul>-->
+                <!--<li title="Skills that have some Area of Effect portion to them. Note that some skills with the AoE may not be affected by Area Damage but only benefit from increases and reductions to the radius.">AoE</li>-->
+                <!--<li title="Skills that use a weapon.">Attack</li>-->
+                <!--<li title="Skills that grant or modify Auras. An aura is a permanent effect focused on your character that also affects nearby party members and minions. Most auras reserve a portion of your mana pool with the exception of Clarity inventory icon.pngClarity reserves a flat amount.">Aura</li>-->
+                <!--<li title="These skills require a bow to be used. They implicitly have the Projectile gem tag.">Bow</li>-->
+                <!--<li title="Skills marked with the Cast keyword deal secondary damage. Cast gems are not spells, and are therefore not affected by modifiers that would normally only modify spells.">Cast</li>-->
+                <!--<li title="Skills that have the ability to chain. Support skill gems with the Chaining can also be linked to active skill gems with the Projectile tag">Chaining</li>-->
+                <!--<li title="Chaos is one of the five damage types">Chaos</li>-->
+                <!--<li title="Cold is one of the five damage types">Cold</li>-->
+                <!--<li title="These skills weaken enemies to make them less dangerous or easier to kill.">Curse</li>-->
+                <!--<li title="Certain skills have an effect over time or activate after the duration. In some cases, such as curses, reusing the skill will reset the timer.">Duration</li>-->
+                <!--<li title="Fire is one of the five damage types">Fire</li>-->
+                <!--<li title="Golems are a type of minion that provides a direct Buff to the person who summoned them, but not to anyone else.">Golem</li>-->
+                <!--<li title="Lightning is one of the five damage types">Lightning</li>-->
+                <!--<li title="Some melee skills require certain weapons; see Melee Skills. These skills all deal melee damage.">Melee</li>-->
+                <!--<li title="Mines can be placed down have to be remotely detonated">Mine</li>-->
+                <!--<li title="These skills let characters raise minions to fight enemies">Minon</li>-->
+                <!--<li title="Skills that move the character.">Movement</li>-->
+                <!--<li title="Skills that emit projectiles">Projectile</li>-->
+                <!--<li title="Skills that do not require weapons to be used">Spell</li>-->
+                <!--<li title="Tag exclusively used by support skill gems">Support</li>-->
+                <!--<li title="Totems are stationary summons that assist in battle. Note that many other skills can be turned into a totem with the Spell Totem or Ranged Attack Totem support gems. See totem damage.">Totem</li>-->
+                <!--<li title="Traps are skills that trigger when an enemy walks over it. Note that many other skills can be turned into a trap with the Trap Support inventory icon.pngTrap Support support gem. See trap damage.">Trap</li>-->
+                <!--<li title="Certain skills can't be activated manually, and happen automatically when specific conditions are met.">Trigger</li>-->
+                <!--<li title="Vaal skill">Vaal</li>-->
+                <!--<li title="Warcries are active skills that provide situational benefits to players and are typically aligned with melee characters, because they only affect nearby enemies and allies. Warcries are not spells can therefore cannot be supported by support gems that specifically link with spells, such as Cast when Damage Taken. They all share a cooldown.">Warcry</li>-->
+            <!--</ul>-->
+        </div>
+        <div id="content">
+            <table id="resultTable">
+                <tr>
+                    <th>IGN</th>
+                    <th>Account</th>
+                    <th>%</th>
+                    <th>Lvl</th>
+                    <th>Price</th>
+                </tr>
+            </table>
+
+            <pre id="resultJson"></pre>
+        </div>
+    </div>
+</body>
+</html>
