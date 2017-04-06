@@ -14,20 +14,21 @@ TradeMacro will be updated to always have the latest PoE-ItemInfo code, you don'
 
 Never completely trust any price checking tool. Inform yourself about what this tool can do and what not (FAQ for example). Use the tools average and median prices to quickly judge if the first results could be accurate or totally wrong. When in doubt ask other people or do some manual checks.
 
-####Usage / Instructions####
+#### Usage / Instructions ####
 
 1. Install AHK (http://ahkscript.org)
 2. Download the [latest release](https://github.com/POE-TradeMacro/POE-TradeMacro/releases/latest) and extract the zip-file. 
 3. Make sure to run PoE in (borderless) windowed mode. Otherwise it won't work!
 4. Run **_Run_Only_This.ahk_** or (`Run_without_Admin_Elevation.ahk` if you don't need and want it).
 5. Default league is set to `tmpstandard` (Softcore Temp-League).
-6. A lot of options, including the league can be changed by opening the settings window or editing `trade_config.ini`.   
+6. A lot of options, including the league can be changed by opening the settings window or editing `trade_config.ini`.  
 7. Check out the [wiki](https://github.com/PoE-TradeMacro/POE-TradeMacro/wiki) for faqs and details about the different settings.
+8. Make sure to play Path of Exile in english, if you're using a different language it probably won't work.
 
 > **Right-click the script icon in your system tray and select `PoE Item Info Settings` to open the settings window and to edit both `PoE-ItemInfos` and `PoE-TradeMacros` settings.**
 
 
-####Shortcuts####
+#### Shortcuts ####
 
 
 |Shortcut|Description|
@@ -41,7 +42,7 @@ Never completely trust any price checking tool. Inform yourself about what this 
 | ctrl+e      | Show item age (own listed items).
 | ctrl+l      | Switch leagues.
 
-####Additional Macros####
+#### Additional Macros ####
 
 `AdditionalMacros.txt` allows you to add your own macros to be included in the script or to use some of the already created macros. Simply remove the comment by deleting the `;` in front of a line.
 
@@ -53,11 +54,11 @@ See the following pages for more information.
 
 [Go to: Troubleshooting](https://github.com/POE-TradeMacro/POE-TradeMacro/wiki/Troubleshooting)
 
-####Forum####
+#### Forum ####
 
 [Path of Exile Forum Thread](https://www.pathofexile.com/forum/view-thread/1757730)
 
-####Screenshots####
+#### Screenshots ####
 
 ![screenshot](http://i.imgur.com/Zw2frfP.png)   
 
