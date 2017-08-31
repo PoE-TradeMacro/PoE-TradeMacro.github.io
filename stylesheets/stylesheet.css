@@ -382,10 +382,10 @@ Full-Width Styles
 }
 
 .header-links div.right {
-    float: left;
+    float: right;
 }
 .header-links div.left {
-    float: right;
+    float: left;
 }
 
 /*******************************************************************************
