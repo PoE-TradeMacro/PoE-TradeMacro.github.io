@@ -373,7 +373,20 @@ Full-Width Styles
   background: #212121;
 }
 
+.header-links:after {
+    content: " ";
+    clear: both;
+    display: block;
+    visibility: hidden;
+    height: 0px;
+}
 
+.header-links div.right {
+    float: left;
+}
+.header-links div.left {
+    float: right;
+}
 
 /*******************************************************************************
 Small Device Styles
