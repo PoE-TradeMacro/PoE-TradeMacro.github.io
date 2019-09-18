@@ -3,11 +3,39 @@ Slate Theme for GitHub Pages
 by Jason Costello, @jsncostello
 *******************************************************************************/
 
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 @import url(github-light.css);
 
 /*******************************************************************************
 MeyerWeb Reset
 *******************************************************************************/
+
+
+/* A font by Jos Buivenga (exljbris) -> www.exljbris.com */
+@font-face {
+    font-family: 'fontinitalic';
+    src: url('fontin-italic-webfont.woff2') format('woff2'),
+         url('fontin-italic-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'fontinregular';
+    src: url('fontin-regular-webfont.woff2') format('woff2'),
+         url('fontin-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'fontin_smallcaps';
+    src: url('fontin-smallcaps-webfont.woff2') format('woff2'),
+         url('fontin-smallcaps-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -51,10 +79,10 @@ Theme Styles
 
 body {
   box-sizing: border-box;
-  color:#373737;
+  color:rgb(163, 141, 109);
   background: #212121;
   font-size: 16px;
-  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
+  font-family: Roboto ,'Verdana', Calibri, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -62,8 +90,8 @@ body {
 h1, h2, h3, h4, h5, h6 {
   margin: 10px 0;
   font-weight: 700;
-  color:#222222;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
+  color:rgb(223, 207, 153);
+  font-family: 'fontin_smallcaps', Verdana, 'Calibri', Helvetica, Arial, sans-serif;
   letter-spacing: -1px;
 }
 
@@ -103,8 +131,9 @@ footer p {
 }
 
 a {
-  text-decoration: none;
-  color: #007edf;
+  font-family: 'fontinregular', Roboto, Verdana, Helvetica, Arial, sans-serif;
+  text-decoration: underline;
+  color: rgb(223, 207, 153);
   text-shadow: none;
 
   transition: color 0.5s ease;
@@ -164,8 +193,8 @@ p img {
 
 pre, code {
   width: 100%;
-  color: #222;
-  background-color: #fff;
+  color: rgb(163, 141, 109);
+  background-color: #000;
 
   font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
   font-size: 14px;
@@ -186,6 +215,7 @@ code {
   padding: 3px;
   margin: 0 3px;
   box-shadow: 0 0 10px rgba(0,0,0,.1);
+  background-color: rgba(226, 226, 226, .1);
 }
 
 pre code {
@@ -245,7 +275,7 @@ table {
  }
 
 th {
-  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-family: 'fontinregular', 'Verdana', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   padding: 10px;
   background: #373737;
   color: #fff;
@@ -254,11 +284,21 @@ th {
 td {
   padding: 10px;
   border: 1px solid #373737;
+    background-color: rgba(45, 49, 54, 0.3);
  }
+td:nth-child(1) {
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+
+}
 
 form {
-  background: #f2f2f2;
-  padding: 20px;
+  background:transparent;
+  padding: 0px;
+}
+form > input[type="image"] {
+    background-color: rgba(255, 255, 255, 255);
+    border-radius: 5px;
+    border-color: rgb(163, 141, 109);
 }
 
 /*******************************************************************************
@@ -284,20 +324,23 @@ Full-Width Styles
   z-index: 10;
   padding: 10px 50px 10px 10px;
   color: #fff;
-  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
+  background: url('../images/blacktocat.png') #5e4016 no-repeat 95% 50%;
   font-weight: 700;
   box-shadow: 0 0 10px rgba(0,0,0,.5);
   border-bottom-left-radius: 2px;
   border-bottom-right-radius: 2px;
 }
 
-#header_wrap {
-  background: #212121;
-  background: -moz-linear-gradient(top, #373737, #212121);
-  background: -webkit-linear-gradient(top, #373737, #212121);
-  background: -ms-linear-gradient(top, #373737, #212121);
-  background: -o-linear-gradient(top, #373737, #212121);
-  background: linear-gradient(top, #373737, #212121);
+#header_wrap, #footer_wrap {
+  background: #111;
+  background: -moz-linear-gradient(top, #373737, #111);
+  background: -webkit-linear-gradient(top, #373737, #111);
+  background: -ms-linear-gradient(top, #373737, #111);
+  background: -o-linear-gradient(top, #373737, #111);
+  background: linear-gradient(top, #373737, #111);
+}
+#footer_wrap .inner {
+    background-color: transparent;
 }
 
 #header_wrap .inner {
@@ -360,17 +403,13 @@ Full-Width Styles
 }
 
 #main_content_wrap {
-  background: #f2f2f2;
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
+  background: rgba(0, 0, 0, 0);
+  border-top: 1px solid rgb(163, 141, 109);
+  border-bottom: 1px solid rgb(163, 141, 109);
 }
 
 #main_content {
   padding-top: 40px;
-}
-
-#footer_wrap {
-  background: #212121;
 }
 
 .header-links:after {
@@ -441,3 +480,4 @@ Small Device Styles
   }
 
 }
+
